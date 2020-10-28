@@ -1,10 +1,14 @@
 package thread.rabbit;
 
-import javax.swing.*;
-
 public class Rabbit implements Runnable {
 
     private static final int MILESTONES = 5;
+
+    private float raceTimeInSeconds = 0f;
+
+    public float getRaceTimeInSeconds(){
+        return raceTimeInSeconds;
+    }
 
     private final Thread rabbit;
 
@@ -34,6 +38,7 @@ public class Rabbit implements Runnable {
                     System.out.println("The Rabbit is leading and hence is going to sleep!");
                     try {
                         Thread.sleep(9000L);
+                        raceTimeInSeconds += 9;
                     } catch (InterruptedException e) {
                         System.err.println("The Rabbit's sleep got interrupted!");
                     }
@@ -44,15 +49,10 @@ public class Rabbit implements Runnable {
             }
             try {
                 Thread.sleep(1500L);
+                raceTimeInSeconds += 1.5;
             } catch (InterruptedException e) {
                 System.err.println("The rabbit has lost the path!");
             }
         }
-        JOptionPane.showConfirmDialog(
-                null,
-                "The Rabbit has completed the race!",
-                "Rabbit",
-                JOptionPane.OK_CANCEL_OPTION
-        );
     }
 }
